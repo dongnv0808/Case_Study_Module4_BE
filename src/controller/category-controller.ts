@@ -13,7 +13,7 @@ class CategoryController{
             res.status(201).json(categories);
         }catch(err){
             next(err);
-            
+
         }
     };
     deleteCategory = async (req: Request, res: Response, next: NextFunction) => {
