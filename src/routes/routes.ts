@@ -1,6 +1,6 @@
 import { Router } from "express";
-import { walletRoute } from "./wallet-route";
+import {AuthRoute} from "./auth-route";
 
 export const routes = Router();
 
-routes.use('/wallet', walletRoute);
+routes.use('', AuthRoute);
