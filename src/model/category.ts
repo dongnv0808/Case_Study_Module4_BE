@@ -9,6 +9,6 @@ const categorySchema = new Schema<ICategory>({
     description: String
 })
 
-const category = model<ICategory>('categories', categorySchema);
+const Category = model<ICategory>('categories', categorySchema);
 
-export {category};
+export {Category};
