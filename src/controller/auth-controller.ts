@@ -8,7 +8,7 @@ class AuthController {
 
     register = async (req, res) => {
         let user = req.body;
-        let checkUsername = await User.find({
+        let checkUsername = await User.findOne({
             username: user.username
         });
         if (checkUsername) {
