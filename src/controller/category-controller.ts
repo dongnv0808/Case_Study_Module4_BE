@@ -43,14 +43,14 @@ class CategoryController{
             next(err);
         }
     };
-    updateCategory = (req: Request, res: Response, next: NextFunction) =>{
+    updateCategory = async (req: Request, res: Response) =>{
         let id = req.params.id;
-        let category = Category.findById(id);
+        let category = await Category.findById(id);
         if(!category){
             res.status(404).json;
         }else{
             let data = req.body;
-            Category.findByIdAndUpdate({
+            await Category.findByIdAndUpdate({
                 _id:id
             },data);
             data._id = id;
