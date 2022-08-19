@@ -4,7 +4,7 @@ import { Request, Response, NextFunction} from "express"
 class WalletController {
     showAllWallet = async(req: any, res: Response) => {
         try{            
-            let idUser = req.decoded.idUser            
+            let idUser = req.decoded.idUser
             let wallets = await Wallet.find({idUser});
             res.status(200).json(wallets)
             
