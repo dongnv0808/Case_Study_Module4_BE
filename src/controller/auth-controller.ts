@@ -8,7 +8,8 @@ class AuthController {
 
     register = async (req, res) => {
         let user = req.body;
-        let checkUsername = await User.find({
+        console.log(user);
+        let checkUsername = await User.findOne({
             username: user.username
         });
         if (checkUsername) {
@@ -16,16 +17,10 @@ class AuthController {
                 message: 'tài khoản đã tồn tại!'
             })
         }else {
-            if (user.password === user.confirmPassword) {
                 user.password = await bcrypt.hash(user.password, 9);
                 user = await User.create(user);
                 res.status(201).json(user);
-            }else {
-                res.status(403).json({
-                    message: 'mật khẩu xác nhận sai!'
-                })
             }
-        }
     };
 
     async login(req, res) {
