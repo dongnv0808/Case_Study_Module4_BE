@@ -1,4 +1,3 @@
-// Xác minh token
 import jwt from "jsonwebtoken";
 
 export const SECRET_KEY = '257946';
