@@ -1,14 +1,22 @@
 import { model, Schema } from "mongoose"
+import { IUser } from "./user";
 export interface ICategory {
     name: string;
-    description: string
+    description: string,
+    type: string,
+    idUser: IUser
 }
 
 const categorySchema = new Schema<ICategory>({
     name: String,
-    description: String
+    description: String,
+    type: ["recharge", "pay"],
+    idUser: {
+        type: Schema.Types.ObjectId,
+        ref: "users"
+    }
 })
 
-const category = model<ICategory>('categories', categorySchema);
+const Category = model<ICategory>('categories', categorySchema);
 
-export {category};
+export {Category};
