@@ -5,8 +5,9 @@ import { IWallet } from "./wallet";
 interface ITransaction {
     categoryId: ICategory,
     walletId: IWallet,
+    money: number,
     description: string,
-    time: string
+    time: Date
 }
 
 const transactionSchema = new Schema<ITransaction>({
@@ -18,8 +19,9 @@ const transactionSchema = new Schema<ITransaction>({
         type: Schema.Types.ObjectId,
         ref: "wallet"
     },
+    money: Number,
     description: String,
-    time: String
+    time: Date
 })
 
 const Transaction = model<ITransaction>("transactions", transactionSchema);
