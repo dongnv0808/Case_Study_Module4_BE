@@ -15,7 +15,7 @@ const walletSchema = new Schema<IWallet>({
     totalMoney: Number,
     idUser: {
         type: Schema.Types.ObjectId,
-        ref: "User"
+        ref: "users"
     }
 })
 
