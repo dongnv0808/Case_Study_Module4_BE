@@ -6,6 +6,8 @@ import { SECRET_KEY } from "../middleware/auth";
 
 class AuthController {
     register = async (req, res) => {
+        console.log(123);
+        
         let user = req.body;
         let checkUsername = await User.findOne({
             username: user.username
