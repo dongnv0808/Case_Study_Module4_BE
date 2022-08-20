@@ -5,3 +5,4 @@ categoryRouter.get('',categoryController.getAll);
 categoryRouter.post('',categoryController.addCategory);
 categoryRouter.delete('/:id',categoryController.deleteCategory);
 
+

@@ -1,5 +1,6 @@
 // Quản lý giao dịch
 import {Transaction} from '../model/transaction';
+import moment from 'moment';
 
 class TransactionController {
     getAllTransaction = async(req: any, res: any) => {
@@ -17,7 +18,9 @@ class TransactionController {
 
     addTransaction = async(req: any, res: any) => {
         try {
+            let time = moment().format('DD/MM/YYYY, h:mm');
             let transaction = req.body;
+            transaction.time = time;
             await Transaction.create(transaction);
             res.status(200).json(transaction);
         }catch {
@@ -38,3 +41,5 @@ class TransactionController {
     
     }
 }
+
+export default new TransactionController();

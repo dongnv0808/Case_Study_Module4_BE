@@ -3,11 +3,10 @@ import { Request, Response, NextFunction} from "express"
 
 class WalletController {
     showAllWallet = async(req: any, res: Response) => {
-        try{            
+        try{
             let idUser = req.decoded.idUser
             let wallets = await Wallet.find({idUser: idUser});
             res.status(200).json(wallets)
-            
         }catch(err){
             res.status(404).json(err)
         }
