@@ -18,9 +18,13 @@ export const auth = (req, res, next) => {
                         error: err.message,
                         message: 'You are anonymous2'
                     });
-                } else {
+                } else if(data.role === "client"){
                     req.decoded = data;
                     next();
+                } else {
+                    res.status(401).json({
+                        message: 'You are anonymous2'
+                    });
                 }
             });
         }
