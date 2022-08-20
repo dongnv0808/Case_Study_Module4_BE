@@ -36,33 +36,20 @@ class AuthController {
                 res.status(401).json({
                     message: 'Password is wrong'
                 })
-            }else {
-                let role = user.role;
-                if (role === 'client') {
-                    //mở giao user
-                    let payload = {
-                        username: user.username
-                    };
-                    let token = await jwt.sign(payload, SECRET_KEY, {
-                        expiresIn: 100000
-                    });
-                    console.log('gd user')
-                    res.status(200).json({
-                        token: token
-                    })
-                }else {
-                    //mở giao diện admin
-                    let payload = {
-                        username: user.username
-                    };
-                    let token = await jwt.sign(payload, SECRET_KEY, {
-                            expiresIn: 100000
-                    });
-                    console.log('gd admin')
-                    res.status(200).json({
-                        token: token
-                    })
+            } else {
+                let payload = {
+                    username: user.username,
+                    role: user.role,
+                    idUser: user._id
                 }
+                let token = await jwt.sign(payload, SECRET_KEY, {
+                    expiresIn: 36000
+                });
+                res.status(200).json({
+                    token: token,
+                    role: user.role,
+                    idUser: user._id
+                });
             }
         }
     }

@@ -5,7 +5,7 @@ import { authAdmin } from "../middleware/checkAdmin";
 
 export const walletRoute = Router();
 
-walletRoute.use(auth, authAdmin);
+walletRoute.use(auth);
 walletRoute.get('', walletController.showAllWallet);
 walletRoute.post('/:idUser', walletController.addWallet);
 walletRoute.put('/:idUser/:id', walletController.updateWallet);

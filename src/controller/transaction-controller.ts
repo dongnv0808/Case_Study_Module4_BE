@@ -18,14 +18,18 @@ class TransactionController {
 
     addTransaction = async(req: any, res: any) => {
         try {
-            let time = moment().format('DD/MM/YYYY, h:mm');
+            // let time = moment().format('DD-MM-YYYY, h:mm');
+            let time = new Date();
+            console.log(time);  
             let transaction = req.body;
             transaction.time = time;
+            console.log(transaction);
             await Transaction.create(transaction);
             res.status(200).json(transaction);
-        }catch {
-            throw new Error('lỗi thêm transaction!')
-
+        }catch (err) {
+            console.log(err);
+            
+            
         }
         
     }

@@ -12,13 +12,11 @@ class WalletController {
         }
     }
 
-    addWallet = async (req: Request, res:Response, next: NextFunction) =>{
+    addWallet = async (req: any, res:Response, next: NextFunction) =>{
         try{
             let id = req.params.idUser
             let wallet = req.body;
             wallet.idUser = id
-            console.log(id);
-            
             let walletNew = await Wallet.create(wallet);
             res.status(201).json(walletNew);
         }catch(err){

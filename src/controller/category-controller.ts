@@ -6,16 +6,20 @@ class CategoryController{
         let categories = await Category.find();
         res.status(200).json(categories);
     };
+
     addCategory = async (req: Request, res:Response, next: NextFunction) =>{
+        console.log(123);
         try{
+            let id = req.params.idUser
             let category = req.body;
+            category.idUser = id;
             let categories = await Category.create(category);
             res.status(201).json(categories);
         }catch(err){
             next(err);
-
         }
     };
+
     deleteCategory = async (req: Request, res: Response, next: NextFunction) => {
         let id = req.params.id;
         try{
