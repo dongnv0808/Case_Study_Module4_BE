@@ -10,7 +10,7 @@ export interface ICategory {
 const categorySchema = new Schema<ICategory>({
     name: String,
     description: String,
-    type: ["recharge", "pay"],
+    type: String,
     idUser: {
         type: Schema.Types.ObjectId,
         ref: "users"
