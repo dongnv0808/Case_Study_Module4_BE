@@ -1,11 +1,25 @@
-import { NextFunction, Request, Response } from "express";
+import { NextFunction, query, Request, Response } from "express";
 import { Category } from "../model/category";
 
 class CategoryController{
     getAll = async (req: any, res:Response) =>{
         let idUser = req.decoded.idUser;
-        let categories = await Category.find({idUser: idUser});
-        res.status(200).json(categories);
+        let limit = 10;
+        let offset = 0;
+        let query = req.query.page;
+        let page = 1;
+        if(query){
+            page = +query;
+        }
+        offset = (page - 1) * limit
+        let categories = await Category.find({idUser: idUser}).limit(limit).skip(offset);
+        let totalCategory = await Category.countDocuments({})
+        let totalPage = Math.ceil(totalCategory/limit);
+        res.status(200).json({
+            categories: categories,
+            totalPage: totalPage,
+            currentPage: page
+        });
     };
     addCategory = async (req: any, res:Response, next: NextFunction) =>{
         try{
