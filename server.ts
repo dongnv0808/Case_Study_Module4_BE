@@ -3,13 +3,11 @@ import express from "express";
 import cors from "cors";
 import { routes } from "./src/routes/routes";
 import dataSource from "./src/data-source";
-import cors from 'cors';
 
+import cors from 'cors';
 const PORT = 3000;
 const app = express();
-app.use(cors());
 dataSource.connect();
-
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
