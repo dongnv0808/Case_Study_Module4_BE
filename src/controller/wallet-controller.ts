@@ -24,10 +24,6 @@ class WalletController {
         }
     };
 
-    getWalletDetail =async (req: any, res: Response, next: NextFunction) => {
-        let id = req.decoded.idUser;
-    }
-        
     updateWallet = async (req: any, res: Response, next: NextFunction) => {
         try{
             let idWallet = req.params.id;            

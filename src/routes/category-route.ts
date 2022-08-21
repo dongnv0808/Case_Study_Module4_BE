@@ -9,4 +9,3 @@ categoryRouter.post('',categoryController.addCategory);
 categoryRouter.get('/:id',categoryController.getCategory);
 categoryRouter.put('/:id',categoryController.updateCategory);
 categoryRouter.delete('/:id',categoryController.deleteCategory);
-
