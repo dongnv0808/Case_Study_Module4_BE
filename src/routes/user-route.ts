@@ -8,4 +8,4 @@ userRoute.use(authAdmin)
 userRoute.get('', userController.getAll);
 userRoute.post('', userController.addUser);
 userRoute.put('/:id', userController.updateUser);
-userRoute.delete('', userController.deleteUser);
+userRoute.delete('/:id', userController.deleteUser);

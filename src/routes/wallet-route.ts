@@ -7,6 +7,7 @@ export const walletRoute = Router();
 
 walletRoute.use(auth);
 walletRoute.get('', walletController.showAllWallet);
-walletRoute.post('/:idUser', walletController.addWallet);
-walletRoute.put('/:idUser/:id', walletController.updateWallet);
-// walletRoute.get('', walletController.getWalletDetail);
+walletRoute.post('', walletController.addWallet);
+walletRoute.get('/:id', walletController.getOneWallet);
+walletRoute.put('/:id', walletController.updateWallet);
+walletRoute.delete('/:id', walletController.deleteWallet);

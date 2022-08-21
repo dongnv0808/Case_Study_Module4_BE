@@ -1,29 +1,26 @@
 // Quản lý giao dịch
 import {Transaction} from '../model/transaction';
-import moment from 'moment';
+import moment, { isDate } from 'moment';
 
 class TransactionController {
-    getAllTransaction = async(req: any, res: any) => {
+    getAllTransactionByIdWallet = async(req: any, res: any) => {
         try {
-            let idUser = req.decoded.idUser
+            let idWallet = req.params.idWallet
             let transactions = await Transaction.find({
-                idUser: idUser
+                walletId: idWallet
             });
             res.status(200).json(transactions);
         }catch {
             throw new Error('lỗi get transaction!')
         }
-        
     };
 
     addTransaction = async(req: any, res: any) => {
         try {
-            // let time = moment().format('DD-MM-YYYY, h:mm');
-            let time = new Date();
-            console.log(time);  
             let transaction = req.body;
-            transaction.time = time;
+            new Date(transaction.time);
             console.log(transaction);
+            
             await Transaction.create(transaction);
             res.status(200).json(transaction);
         }catch (err) {
@@ -34,7 +31,7 @@ class TransactionController {
         
     }
 
-    delete = async (req: any, res: any) => {
+    deleteTransaction = async (req: any, res: any) => {
         try {
             let id = req.params._id
             await Transaction.remove(id);
