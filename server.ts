@@ -6,9 +6,7 @@ import dataSource from "./src/data-source";
 
 const PORT = 3000;
 const app = express();
-app.use(cors());
 dataSource.connect();
-
 app.use(cors());
 app.use(bodyParser.json());
 app.use(express.json());
