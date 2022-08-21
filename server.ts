@@ -3,6 +3,8 @@ import express from "express";
 import cors from "cors";
 import { routes } from "./src/routes/routes";
 import dataSource from "./src/data-source";
+
+import cors from 'cors';
 const PORT = 3000;
 const app = express();
 dataSource.connect();
