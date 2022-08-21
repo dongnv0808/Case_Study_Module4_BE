@@ -4,7 +4,7 @@ import { Category } from "../model/category";
 class CategoryController{
     getAll = async (req: any, res:Response) =>{
         let idUser = req.decoded.idUser;
-        let categories = await Category.find({idUser});
+        let categories = await Category.find({idUser: idUser});
         res.status(200).json(categories);
     };
     addCategory = async (req: any, res:Response, next: NextFunction) =>{
@@ -16,9 +16,9 @@ class CategoryController{
             res.status(201).json(categories);
         }catch(err){
             next(err);
-
         }
     };
+
     updateCategory = async (req: any, res: Response, next: NextFunction) =>{
         try{
             let id = req.params.id;
@@ -39,6 +39,7 @@ class CategoryController{
             next(err)
         }
     }
+
     deleteCategory = async (req: Request, res: Response, next: NextFunction) => {
         let id = req.params.id;
         try{
@@ -66,5 +67,6 @@ class CategoryController{
             next(err);
         }
     };
+
 }
 export default new CategoryController();

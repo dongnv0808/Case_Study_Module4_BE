@@ -8,16 +8,17 @@ interface ITransaction {
     money: number,
     description: string,
     time: Date
+    e
 }
 
 const transactionSchema = new Schema<ITransaction>({
     categoryId: {
         type: Schema.Types.ObjectId,
-        ref: "category"
+        ref: "categorys"
     },
     walletId: {
         type: Schema.Types.ObjectId,
-        ref: "wallet"
+        ref: "wallets"
     },
     money: Number,
     description: String,

@@ -1,6 +1,6 @@
 import bcrypt from "bcrypt";
 import {User} from "../model/user";
-import jwt from "jsonwebtoken";
+import jwt from 'jsonwebtoken';
 import { SECRET_KEY } from "../middleware/auth";
 
 
