@@ -1,6 +1,7 @@
 // Quản lý giao dịch
 import {Transaction} from '../model/transaction';
 import moment, { isDate } from 'moment';
+import { model } from 'mongoose';
 
 class TransactionController {
     getAllTransactionByIdWallet = async(req: any, res: any) => {
@@ -8,10 +9,11 @@ class TransactionController {
             let idWallet = req.params.idWallet
             let transactions = await Transaction.find({
                 walletId: idWallet
-            });
+            }).populate('categoryId', 'name');
             res.status(200).json(transactions);
-        }catch {
-            throw new Error('lỗi get transaction!')
+        }catch (err) {
+            console.log(err);
+            // throw new Error('lỗi get transaction!')
         }
     };
 
@@ -25,22 +27,23 @@ class TransactionController {
             res.status(200).json(transaction);
         }catch (err) {
             console.log(err);
-            
-            
         }
         
-    }
+    };
 
-    deleteTransaction = async (req: any, res: any) => {
+    deleteTransaction = async (req: any, res: any) => {        
         try {
-            let id = req.params._id
-            await Transaction.remove(id);
-        res.status(200).json();
-        }catch {
-            throw new Error('lỗi xoá transaction!')
+            let id = req.params.idTransaction
+            await Transaction.deleteOne({
+                _id: id
+            });
+        console.log(123);
+            res.status(200).json();
+        }catch(err) {
+            console.log(err);
+            // throw new Error('lỗi xoá transaction!')
         }
-    
     }
 }
-
+ 
 export default new TransactionController();
