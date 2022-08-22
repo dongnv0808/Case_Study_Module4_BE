@@ -5,7 +5,7 @@ import moment, { isDate } from 'moment';
 class TransactionController {
     getAllTransactionByIdWallet = async(req: any, res: any) => {
         try {
-            let idWallet = req.params.idWallet
+            let idWallet = req.params.id
             let transactions = await Transaction.find({
                 walletId: idWallet
             });
