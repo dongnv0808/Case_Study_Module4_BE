@@ -1,5 +1,6 @@
 import { Wallet } from "../model/wallet"
 import { Request, Response, NextFunction} from "express"
+import { Transaction } from "../model/transaction";
 
 class WalletController {
     showAllWallet = async(req: any, res: Response) => {
@@ -16,7 +17,7 @@ class WalletController {
         try{
             let id = req.decoded.idUser;
             let wallet = req.body;
-            wallet.idUser = id            
+            wallet.idUser = id;
             let walletNew = await Wallet.create(wallet);
             res.status(201).json(walletNew);
         }catch(err){

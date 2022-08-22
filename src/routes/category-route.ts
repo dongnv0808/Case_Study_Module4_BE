@@ -5,7 +5,8 @@ export const categoryRouter = Router();
 
 categoryRouter.use(auth);
 categoryRouter.get('',categoryController.getAll);
+categoryRouter.get('/category', categoryController.getCategories);
 categoryRouter.post('',categoryController.addCategory);
-categoryRouter.get('/:id',categoryController.getCategory);
+categoryRouter.get('/getOneCategory/:id',categoryController.getCategory);
 categoryRouter.put('/:id',categoryController.updateCategory);
 categoryRouter.delete('/:id',categoryController.deleteCategory);
