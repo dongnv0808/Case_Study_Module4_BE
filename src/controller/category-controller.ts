@@ -68,7 +68,7 @@ class CategoryController{
             next(err);
         }
     };
-    getCategory = async (req: Request, res: Response, next: NextFunction) => {
+    getCategory = async (req: any, res: Response, next: NextFunction) => {
         let id = req.params.id;
         let category = await Category.findById(id);
         try{
@@ -82,5 +82,10 @@ class CategoryController{
         }
     };
 
+    getCategories = async (req: any, res:Response) =>{
+        let idUser = req.decoded.idUser;
+        let categories = await Category.find({idUser: idUser});
+        res.status(200).json(categories);
+    };
 }
 export default new CategoryController();

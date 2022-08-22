@@ -58,5 +58,20 @@ class UserController{
 
         }
     }
+
+    getCurrentUser = async (req: any, res: Response, next: NextFunction) => {
+        let idUser = req.decoded.idUser;
+        console.log(idUser);
+        try{
+            let user = await User.findById(idUser);
+            if(user){
+               res.status(200).json(user); 
+            }else{
+                res.status(404).json();
+            }
+        }catch(err){
+            next(err);
+        }
+    }
 }
 export default new UserController();
